@@ -12,7 +12,7 @@ class Storage(ABC):
         pass
 
 class JSONStorage(Storage):
-    def __init__(self, file_path: str):
+    def __init__(self, file_path: str = "expenses.json"):
         self.file_path = Path(file_path)
 
     def load(self) -> list[Expense]:
