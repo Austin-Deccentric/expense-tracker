@@ -62,8 +62,12 @@ def main(argv: list[str] | None = None) -> int:
             for i, expense in enumerate(expenses):
                 print(f"{i+1}. Amount: {expense.amount:>7.2f}, Category: {expense.category:<10}, Note: {expense.note}")
     elif args.command == "summary":
-        for category, total in tracker.summary().items():
-            print(f"Category: {category:<12} amount: ${total:.2f}")
+        if not tracker.list_expenses():
+            print("No expenses recorded yet.") 
+        else:
+            print("Expense Summary by Category")
+            for category, total in tracker.summary().items():
+                print(f"Category: {category:<12} amount: ${total:.2f}")
         print(f"{'Total spent:':<12} ${tracker.total_expense():.2f}")
     return sys.exit(0)
 
